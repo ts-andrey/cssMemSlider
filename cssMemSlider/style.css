@@ -1,3 +1,11 @@
+:root {
+  --main-background: #212529;
+  --bullet-hover-color: #edf2f4;
+  --bullet-color: #e63946;
+  --slider-width: 150rem;
+  --text-color: #fcbf49;
+}
+
 *,
 *::after,
 *::before {
@@ -12,7 +20,8 @@ html {
 
 body {
   box-sizing: border-box;
-  background-color: #ccc;
+  background-color: var(--main-background);
+  font-family: 'Marck Script', cursive;
 }
 
 input[type='radio'] {
@@ -21,7 +30,7 @@ input[type='radio'] {
 
 .slider {
   height: fit-content;
-  width: 150rem;
+  width: var(--slider-width);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -29,7 +38,6 @@ input[type='radio'] {
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(2, 50%);
-  grid-row-gap: 2rem;
   grid-template-rows: repeat(3, auto);
 }
 
@@ -38,10 +46,11 @@ input[type='radio'] {
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
-  width:inherit;
+  width: inherit;
   height: fit-content;
   grid-column: span 2;
   grid-row: 1;
+  padding-bottom: 2rem;
 }
 
 .text {
@@ -51,6 +60,8 @@ input[type='radio'] {
   grid-column: 1;
   grid-row: 2;
   font-size: 4rem;
+  color: var(--text-color);
+  padding-left: 0.3rem;
 }
 
 .navigation {
@@ -62,36 +73,46 @@ input[type='radio'] {
 }
 
 .slide {
-  transition: all 0.6s;
+  transition: all 0.45s;
 }
 img {
-  width: 150rem;
-  /* height: 60rem; */
+  width: var(--slider-width);
 }
 
 .slide-text {
-  width: 150rem;
+  width: var(--slider-width);
   transition: all 0.6s;
 }
 
 .page {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin: 5px;
+  width: 2.5rem;
+  height: 3.5rem;
+  margin: 0 0.5rem;
   cursor: pointer;
-  background-color: #000;
-  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
 }
-.page:active {
-  border: 2px solid #000;
-  background-color: #ccc;
-}
-.page:hover {
-  background-color: #fff;
-  border: 2px solid #fff;
+.page:last-of-type {
+  margin-right: 0;
 }
 
+.page button {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--bullet-color);
+  outline: 2px solid var(--bullet-color);
+  pointer-events: none;
+  align-self: center;
+  border: none;
+}
+
+.page:hover > button {
+  background-color: var(--bullet-hover-color);
+  outline: 2px solid var(--bullet-hover-color);
+}
+
+/* TEXT AND IMAGE MOVEMENT */
 #mem1:checked ~ .images .s1,
 #mem1:checked ~ .text .t1 {
   margin-left: 0;
@@ -100,38 +121,73 @@ img {
   margin-left: -100%;
 }
 #mem2:checked ~ .text .t1 {
-  margin-left: -150rem;
+  margin-left: calc(var(--slider-width) * -1);
 }
 #mem3:checked ~ .images .s1 {
   margin-left: -200%;
 }
 #mem3:checked ~ .text .t1 {
-  margin-left: -300rem;
+  margin-left: calc(var(--slider-width) * -2);
 }
 #mem4:checked ~ .images .s1 {
   margin-left: -300%;
 }
 #mem4:checked ~ .text .t1 {
-  margin-left: -450rem;
+  margin-left: calc(var(--slider-width) * -3);
 }
 #mem5:checked ~ .images .s1 {
   margin-left: -400%;
 }
 #mem5:checked ~ .text .t1 {
-  margin-left: -600rem;
+  margin-left: calc(var(--slider-width) * -4);
 }
+
+/* Appearance of current mem text */
 #mem1:checked ~ .text .t1,
 #mem2:checked ~ .text .t2,
 #mem3:checked ~ .text .t3,
 #mem4:checked ~ .text .t4,
 #mem5:checked ~ .text .t5 {
-  animation: text-in 1s;
+  animation: text-in 0.6s;
 }
+
+/* bullets active mem state */
+#mem1:checked ~ .navigation .p1,
+#mem2:checked ~ .navigation .p2,
+#mem3:checked ~ .navigation .p3,
+#mem4:checked ~ .navigation .p4,
+#mem5:checked ~ .navigation .p5 {
+  background-color: var(--main-background);
+  outline: 2px solid var(--bullet-color);
+}
+
+/* Hiding text from different mems */
+/* first mem text */
 #mem1:checked ~ .text > .t2,
+#mem1:checked ~ .text > .t3,
+#mem1:checked ~ .text > .t4,
+#mem1:checked ~ .text > .t5,
+/* second mem text*/
+#mem2:checked ~ .text > .t1,
 #mem2:checked ~ .text > .t3,
+#mem2:checked ~ .text > .t4,
+#mem2:checked ~ .text > .t5,
+/* third mem text*/
+#mem3:checked ~ .text > .t1,
+#mem3:checked ~ .text > .t2,
 #mem3:checked ~ .text > .t4,
-#mem4:checked ~ .text > .t5 {
-  animation: text-out 0.15s;
+#mem3:checked ~ .text > .t5,
+/* fourth mem text*/
+#mem4:checked ~ .text > .t1,
+#mem4:checked ~ .text > .t2,
+#mem4:checked ~ .text > .t3,
+#mem4:checked ~ .text > .t5,
+/* fifth mem text*/
+#mem5:checked ~ .text > .t1,
+#mem5:checked ~ .text > .t2,
+#mem5:checked ~ .text > .t3,
+#mem5:checked ~ .text > .t4 {
+  animation: text-out 0.2s;
   animation-fill-mode: forwards;
 }
 
@@ -149,5 +205,105 @@ img {
   }
   100% {
     opacity: 0;
+  }
+}
+
+@media screen and (max-width: 1560px) {
+  :root {
+    --slider-width: 120rem;
+  }
+}
+@media screen and (max-width: 1280px) {
+  :root {
+    --slider-width: 100rem;
+  }
+}
+@media screen and (max-width: 1080px) {
+  :root {
+    --slider-width: 80rem;
+  }
+}
+@media screen and (max-width: 880px) {
+  :root {
+    --slider-width: 60rem;
+  }
+  .navigation{
+    grid-row: 2;
+    grid-column: span 2;
+    justify-self: center;
+    padding-bottom: 2rem;
+  }
+  .text{
+    grid-row: 3;
+    grid-column: span 2;
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width: 680px) {
+  :root {
+    --slider-width: 40rem;
+  }
+
+  .text{
+    font-size: 2.5rem;
+  }
+
+  .page {
+    width: 2rem;
+    height: 2.3rem;
+    margin: 0 0.5rem;
+  }
+
+  .page button {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  :root {
+    --slider-width: 29rem;
+  }
+
+  .text{
+    font-size: 2rem;
+  }
+
+  .page {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 0.5rem;
+  }
+
+  .page button {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+@media screen and (max-width: 330px) {
+  :root {
+    --slider-width: 20rem;
+  }
+  .text{
+    font-size: 1.5rem;
+  }
+
+  .page {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 0.3rem;
+  }
+
+  .page button {
+    width: .7rem;
+    height: .7rem;
+  }
+}
+@media screen and (max-width: 260px) {
+  :root {
+    --slider-width: 14rem;
+  }
+
+  .text{
+    font-size: 1.2rem;
   }
 }
