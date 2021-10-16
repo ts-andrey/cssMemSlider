@@ -1,5 +1,6 @@
 :root {
   --main-background: #212529;
+  --footer-background: #0b0c0e;
   --bullet-hover-color: #edf2f4;
   --bullet-color: #e63946;
   --slider-width: 150rem;
@@ -28,23 +29,79 @@ input[type='radio'] {
   display: none;
 }
 
+/* Header */
+
+h1 {
+  font-size: 5rem;
+  text-align: center;
+  position: inherit;
+  padding-top: 1.5vh;
+  color: var(--text-color);
+}
+
+/* FOOTER */
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--footer-background);
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+footer p {
+  width: max-content;
+}
+ul {
+  display: flex;
+  list-style: none;
+  padding: 1rem;
+  width: 46rem;
+}
+li {
+  align-self: center;
+  margin-right: 20%;
+}
+li:last-of-type {
+  margin-right: 0;
+}
+svg {
+  height: 3rem;
+  fill: var(--text-color);
+  margin-right: 2rem;
+}
+a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+  width: max-content;
+}
+
+/* SLIDER */
 /* containers */
 .slider {
   width: var(--slider-width);
   height: fit-content;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(2, 50%);
   grid-template-rows: repeat(3, auto);
+  z-index: 10;
 }
 
 .images {
   width: inherit;
   height: fit-content;
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -78,6 +135,7 @@ input[type='radio'] {
   transition: all 0.45s;
 }
 img {
+  border-radius: 3rem;
   width: var(--slider-width);
 }
 
@@ -206,20 +264,34 @@ img {
   :root {
     --slider-width: 120rem;
   }
+  h1 {
+    padding-top: 4vh;
+  }
 }
 @media screen and (max-width: 1280px) {
   :root {
     --slider-width: 100rem;
+  }
+  h1 {
+    font-size: 4.8rem;
+    padding-top: 8vh;
   }
 }
 @media screen and (max-width: 1080px) {
   :root {
     --slider-width: 80rem;
   }
+  h1 {
+    font-size: 4.5rem;
+    padding-top: 13vh;
+  }
 }
 @media screen and (max-width: 880px) {
   :root {
     --slider-width: 60rem;
+  }
+  h1 {
+    font-size: 3.5rem;
   }
   .navigation {
     grid-row: 2;
@@ -238,6 +310,9 @@ img {
     --slider-width: 40rem;
   }
 
+  h1 {
+    font-size: 3.5rem;
+  }
   .text {
     font-size: 2.5rem;
   }
@@ -252,10 +327,22 @@ img {
     width: 1.2rem;
     height: 1.2rem;
   }
+
+  footer {
+    font-size: 1.6rem;
+  }
+
+  ul {
+    width: 41rem;
+  }
 }
 @media screen and (max-width: 480px) {
   :root {
     --slider-width: 29rem;
+  }
+
+  h1 {
+    font-size: 3rem;
   }
 
   .text {
@@ -272,10 +359,34 @@ img {
     width: 1rem;
     height: 1rem;
   }
+
+  footer {
+    font-size: 1.4rem;
+  }
+
+  ul {
+    width: 30rem;
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-template-rows: auto;
+    justify-content: center;
+    align-content: center;
+  }
+  li {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  li:last-of-type {
+    margin-bottom: 0;
+  }
 }
 @media screen and (max-width: 330px) {
   :root {
     --slider-width: 20rem;
+  }
+  h1 {
+    font-size: 2rem;
+    padding-top: 18vh;
   }
   .text {
     font-size: 1.5rem;
