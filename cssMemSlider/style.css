@@ -28,9 +28,10 @@ input[type='radio'] {
   display: none;
 }
 
+/* containers */
 .slider {
-  height: fit-content;
   width: var(--slider-width);
+  height: fit-content;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -42,36 +43,37 @@ input[type='radio'] {
 }
 
 .images {
+  width: inherit;
+  height: fit-content;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
-  width: inherit;
-  height: fit-content;
   grid-column: span 2;
   grid-row: 1;
   padding-bottom: 2rem;
 }
 
 .text {
-  display: flex;
-  justify-self: start;
-  align-self: center;
   grid-column: 1;
   grid-row: 2;
+  justify-self: start;
+  align-self: center;
+  display: flex;
   font-size: 4rem;
   color: var(--text-color);
   padding-left: 0.3rem;
 }
 
 .navigation {
-  display: flex;
-  justify-self: end;
-  align-self: center;
   grid-column: 2;
   grid-row: 2;
+  justify-self: end;
+  align-self: center;
+  display: flex;
 }
 
+/* Slides */
 .slide {
   transition: all 0.45s;
 }
@@ -84,6 +86,7 @@ img {
   transition: all 0.6s;
 }
 
+/* Bullets */
 .page {
   width: 2.5rem;
   height: 3.5rem;
@@ -151,7 +154,7 @@ img {
   animation: text-in 0.6s;
 }
 
-/* bullets active mem state */
+/* set style for active mem to bullet */
 #mem1:checked ~ .navigation .p1,
 #mem2:checked ~ .navigation .p2,
 #mem3:checked ~ .navigation .p3,
@@ -187,8 +190,7 @@ img {
 #mem5:checked ~ .text > .t2,
 #mem5:checked ~ .text > .t3,
 #mem5:checked ~ .text > .t4 {
-  animation: text-out 0.2s;
-  animation-fill-mode: forwards;
+  opacity: 0;
 }
 
 @keyframes text-in {
@@ -197,14 +199,6 @@ img {
   }
   100% {
     opacity: 1;
-  }
-}
-@keyframes text-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 
@@ -227,13 +221,13 @@ img {
   :root {
     --slider-width: 60rem;
   }
-  .navigation{
+  .navigation {
     grid-row: 2;
     grid-column: span 2;
     justify-self: center;
     padding-bottom: 2rem;
   }
-  .text{
+  .text {
     grid-row: 3;
     grid-column: span 2;
     font-size: 3rem;
@@ -244,7 +238,7 @@ img {
     --slider-width: 40rem;
   }
 
-  .text{
+  .text {
     font-size: 2.5rem;
   }
 
@@ -264,7 +258,7 @@ img {
     --slider-width: 29rem;
   }
 
-  .text{
+  .text {
     font-size: 2rem;
   }
 
@@ -283,7 +277,7 @@ img {
   :root {
     --slider-width: 20rem;
   }
-  .text{
+  .text {
     font-size: 1.5rem;
   }
 
@@ -294,8 +288,8 @@ img {
   }
 
   .page button {
-    width: .7rem;
-    height: .7rem;
+    width: 0.7rem;
+    height: 0.7rem;
   }
 }
 @media screen and (max-width: 260px) {
@@ -303,7 +297,7 @@ img {
     --slider-width: 14rem;
   }
 
-  .text{
+  .text {
     font-size: 1.2rem;
   }
 }
