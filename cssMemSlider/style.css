@@ -1,0 +1,153 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: #ccc;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.slider {
+  height: fit-content;
+  width: 150rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-row-gap: 2rem;
+  grid-template-rows: repeat(3, auto);
+}
+
+.images {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  width:inherit;
+  height: fit-content;
+  grid-column: span 2;
+  grid-row: 1;
+}
+
+.text {
+  display: flex;
+  justify-self: start;
+  align-self: center;
+  grid-column: 1;
+  grid-row: 2;
+  font-size: 4rem;
+}
+
+.navigation {
+  display: flex;
+  justify-self: end;
+  align-self: center;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.slide {
+  transition: all 0.6s;
+}
+img {
+  width: 150rem;
+  /* height: 60rem; */
+}
+
+.slide-text {
+  width: 150rem;
+  transition: all 0.6s;
+}
+
+.page {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+  background-color: #000;
+  border: 2px solid #000;
+}
+.page:active {
+  border: 2px solid #000;
+  background-color: #ccc;
+}
+.page:hover {
+  background-color: #fff;
+  border: 2px solid #fff;
+}
+
+#mem1:checked ~ .images .s1,
+#mem1:checked ~ .text .t1 {
+  margin-left: 0;
+}
+#mem2:checked ~ .images .s1 {
+  margin-left: -100%;
+}
+#mem2:checked ~ .text .t1 {
+  margin-left: -150rem;
+}
+#mem3:checked ~ .images .s1 {
+  margin-left: -200%;
+}
+#mem3:checked ~ .text .t1 {
+  margin-left: -300rem;
+}
+#mem4:checked ~ .images .s1 {
+  margin-left: -300%;
+}
+#mem4:checked ~ .text .t1 {
+  margin-left: -450rem;
+}
+#mem5:checked ~ .images .s1 {
+  margin-left: -400%;
+}
+#mem5:checked ~ .text .t1 {
+  margin-left: -600rem;
+}
+#mem1:checked ~ .text .t1,
+#mem2:checked ~ .text .t2,
+#mem3:checked ~ .text .t3,
+#mem4:checked ~ .text .t4,
+#mem5:checked ~ .text .t5 {
+  animation: text-in 1s;
+}
+#mem1:checked ~ .text > .t2,
+#mem2:checked ~ .text > .t3,
+#mem3:checked ~ .text > .t4,
+#mem4:checked ~ .text > .t5 {
+  animation: text-out 0.15s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes text-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes text-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
